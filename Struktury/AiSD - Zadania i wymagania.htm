@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://www.cs.put.poznan.pl/mmachowiak/aisd.php?opcja=lista_bst -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+	
+	<link rel="StyleSheet" href="./AiSD - Zadania i wymagania_files/mmstyle.css" type="text/css">
+        <script language="JavaScript" src="./AiSD - Zadania i wymagania_files/page.js"></script>
+	<title>AiSD - Zadania i wymagania</title>
+	<meta name="description" content="Tematy" zadań="" i="" wymagania="" dotyczące="" algorytmów="" struktur="" danych,="" matematyki="" dyskretnej="" oraz="" wstępu="" do="" programowania="">
+	<meta name="keywords" content="Algorytmy" i="" struktury="" danych,="" matematyka="" dyskretna,="" wstęp="" do="" programowania="">
+	<link rel="shortcut icon" href="http://www.cs.put.poznan.pl/mmachowiak/em.ico" type="image/x-icon">
+	<script type="text/javascript" src="./AiSD - Zadania i wymagania_files/mashlet-loader.js"></script><link type="text/css" rel="stylesheet" href="./AiSD - Zadania i wymagania_files/mashlet.css"><script type="text/javascript" src="./AiSD - Zadania i wymagania_files/mashlet-core.js"></script><script type="text/javascript" src="./AiSD - Zadania i wymagania_files/loadconfig.jsp"></script><script type="text/javascript" src="./AiSD - Zadania i wymagania_files/prototip-min.js"></script><link type="text/css" rel="stylesheet" href="./AiSD - Zadania i wymagania_files/prototip.css"><script type="text/javascript" src="./AiSD - Zadania i wymagania_files/badge.js"></script></head>
+        <body onload="ZegarStart(); ShowMenu();">
+        <table class="main" cellspacing="0" align="center"><tbody><tr><td>
+	<table class="hd" cellspacing="0">
+		<tbody><tr><td class="top"><!--<img src="images/headbrd.jpg" border="0" usemap="#but">-->
+		<map name="but">
+		  <area coords="270,22,295,45" href="http://www.cs.put.poznan.pl/mmachowiak/index.php">
+		  <area coords="303,22,328,45" href="mailto:maciej.machowiak@cs.put.poznan.pl">		
+		</map><span id="zegar">&nbsp;&nbsp;SAT, Apr 6. 2017 / 16 : 45 : 10</span>
+	</td></tr></tbody></table>	<form action="http://www.cs.put.poznan.pl/mmachowiak/aisd.php" method="GET"><table><tbody><tr><td>
+		<select name="opcja" onchange="form.submit()">
+		<option selected="" value="">-&gt; wybierz zadanie:</option><option value="wymagania">Wymagania</option><option value="sortowanie">Zadanie 1</option><option value="lista_bst">Zadanie 2</option><option value="zadanie_3">Zadanie 3</option><option value="zadanie_4">Zadanie 4</option><option value="zadanie_5">Zadanie 5</option><option value="zadanie_1">Zadanie 1 - niestacjonarne</option><option value="zadanie_2">Zadanie 2 - niestacjonarne</option><option value="zadanie_3niest">Zadanie 3 - niestacjonarne</option></select></td><td>
+		<input type="submit" value="OK"></td><td></td>
+		</tr></tbody></table>		
+		</form><table><tbody><tr><td class="top"><span id="menu"><table cellspacing="0" class="tmn"><tbody><tr><td><a href="http://www.cs.put.poznan.pl/mmachowiak/index.php">Home</a></td></tr><tr><td class="mu"><a href="javascript:;" onmousedown="DisplaySubMenu(&quot;Dydaktyka&quot;);">Dydaktyka</a><br><a href="javascript:;" onmousedown="DisplaySubMenu(&quot;Publikacje&quot;);">Publikacje</a><br></td></tr></tbody></table><div id="subm"></div></span></td><td class="mu"><h1>Zadanie 2. Złozone struktury danych</h1>
+<br><b>Termin oddania: 12.04.2016</b>
+<br>
+<br>Przebieg ćwiczenia:
+<br>
+<br>I.
+<br>l. W oparciu o nie posortowany ciąg nie powtarzających się liczb naturalnych (zapamiętany przykładowo w tablicy) należy zbudować:
+<br>
+<br>- posortowaną listę jednokierunkową (sortowanie w trakcie wstawiania pojedynczego elementu),
+<br>- drzewo poszukiwań binarnych (BST).
+<br>
+<br>2. Zmierzyć czas:
+<br>- tworzenia obu struktur,
+<br>- sumaryczny czas wyszukiwania wszystkich elementów jeden po drugim w oparciu o tablicę pomocniczą,
+<br>- czas usuwania struktur przy usuwaniu zawsze pierwszego elementu listy i elementów drzewa w porządku wstecznym.
+<br>
+<br>Liczbę wczytywanych elementów należy dobrać w sposób umożliwiający pomiar czasu. 
+<br>Wyniki należy przedstawić na wspólnych wykresach dla poszczególnych operacji: tworzenia, wyszukiwania, usuwania. 
+<br>W razie konieczności należy zastosować skalę logarytmiczną.
+<br>Dokonać porównania listy jednokierunkowej i drzewa poszukiwań binarnych. 
+<br>Sformułować wnioski dotyczące efektywności i wygody korzystania z obu struktur, złożoności obliczeniowej analizowanych operacji. 
+<br>Jakie są wady i zalety tych struktur?
+<br>
+<br>II.
+<br>1. Utwórz drzewo BST i podaj jego wysokość, następnie skonstruuj wyważone drzewo AVL. 
+<br>   tj. odczytaj elementy drzewa BST w porządku inorder i wykorzystaj metodę połowienia binarnego. 
+<br>   Podaj wysokość utworzonego drzewa AVL. Porównanie wysokości obu drzew zobrazuj na wykresie w zależności od ilości elementów.
+<br>
+<br>2. Jakiemu celowi służy wyważanie drzewa i jakie są skutki wykonania tej operacji? Kiedy jej realizacja jest sensowna?
+<br>3. Sformułować wnioski ogólne dotyczące doboru struktur danych do rozwiązywanych problemów.
+<br>Porównać wady i zalety struktur statycznych i dynamicznych.
+<br>
+<br><a href="http://www.cs.put.poznan.pl/mmachowiak/bstcode.txt">pomocny materiał</a>
+<br><br></td></tr></tbody></table>	<table class="st" align="center"><tbody><tr><td>© Copyright by <b>Maciej Machowiak</b><br>Instytut Informatyki Politechniki Poznańskiej<br></td>
+</tr><tr><td><span id="badgeCont466748" style="width:226px"><img id="badge_badgeCont466748" src="./AiSD - Zadania i wymagania_files/rid-idsymbol4.gif"></span>
+	</td></tr></tbody></table>
+	</td></tr></tbody></table></body></html>
