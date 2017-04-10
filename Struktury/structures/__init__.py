@@ -1,16 +1,12 @@
 class StructureHandler:
-    @classmethod
-    def add_element(cls, value):
+    def add_element(self, value):
         raise NotImplementedError
 
-    @classmethod
-    def clear(cls):
+    def clear(self):
         raise NotImplementedError
 
-    @classmethod
-    def remove_element(cls, value):
+    def remove_element(self, value):
         raise NotImplementedError
 
-    @classmethod
-    def find_by_value(cls, value):
+    def find_by_value(self, value):
         raise NotImplementedError

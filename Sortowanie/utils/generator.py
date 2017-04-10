@@ -1,7 +1,7 @@
 import random
 import os
 
-from common import *
+from Sortowanie.common import *
 
 
 def generate_data():

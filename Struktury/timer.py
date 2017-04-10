@@ -1,11 +1,16 @@
 import time
 
+time_elapsed = []
 
-def measure(runner_function):
-    def wrapper():
 
+def measure(call):
+
+    def wrapper(*args):
+        global time_elapsed
         start = time.time()
-        runner_function()
-        print(time.time() - start)
+        returned = call(*args)
+        time_elapsed.append(time.time() - start)
+        return returned
 
     return wrapper
+

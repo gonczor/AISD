@@ -1,11 +1,14 @@
-from structures import StructureHandler
+from Struktury.structures import StructureHandler
 
 
 class AVLHandler(StructureHandler):
+    @classmethod
+    def find_by_value(cls, value):
+        pass
+
     _root = None
 
-    @classmethod
-    def get_height(cls, start=True, node=None):
+    def get_height(self, start=True, node=None):
         """
         Show height by going in order. Same hacks as in show_in_order method.
         :param start: indicates whether we are starting or not. Default to True to make end-user's
@@ -14,73 +17,69 @@ class AVLHandler(StructureHandler):
         :returns: height of the tree
         """
         if start:
-            node = cls._root
+            node = self._root
 
         if not node or not node.value:
             return 0
 
-        left_subtree_height = cls.get_height(start=False, node=node.left_child)
-        right_subtree_height = cls.get_height(start=False, node=node.right_child)
+        left_subtree_height = self.get_height(start=False, node=node.left_child)
+        right_subtree_height = self.get_height(start=False, node=node.right_child)
         if left_subtree_height >= right_subtree_height:
             return left_subtree_height + 1
         else:
             return right_subtree_height + 1
 
-    @classmethod
-    def clear(cls, start=True, node=None):
+    def clear(self, start=True, node=None):
         if start:
-            node = cls._root
+            node = self._root
 
         if not node:
             return
 
-        cls.clear(start=False, node=node.left_child)
-        cls.clear(start=False, node=node.right_child)
+        self.clear(start=False, node=node.left_child)
+        self.clear(start=False, node=node.right_child)
         node.value = None
         node = None
         del node
 
-    @classmethod
-    def add_element(cls, value):
-        if not cls._root:
-            cls._root = Node(value)
+    def add_element(self, value):
+        if not self._root:
+            self._root = Node(value)
         else:
-            cls._find_and_place(value, cls._root)
+            self._find_and_place(value, self._root)
 
-    @classmethod
-    def _find_and_place(cls, value, parent):
+    def _find_and_place(self, value, parent):
         if value >= parent.value:
             if not parent.right_child:
                 parent.right_child = Node(value)
             else:
-                cls._find_and_place(value=value, parent=parent.right_child)
+                self._find_and_place(value=value, parent=parent.right_child)
         else:
             if not parent.left_child:
                 parent.left_child = Node(value)
             else:
-                cls._find_and_place(value=value, parent=parent.left_child)
+                self._find_and_place(value=value, parent=parent.left_child)
 
-        parent_is_root = parent == cls._root
+        parent_is_root = parent == self._root
 
         # rebalancing
 
-        balance = cls._get_balance(parent)
+        balance = self._get_balance(parent)
         # right is heavier
         if balance > 1:
-            if cls._get_balance(parent.left_child) < 0:
-                cls.left_rotate(parent)
-            parent = cls.right_rotate(parent)
+            if self._get_balance(parent.left_child) < 0:
+                self.left_rotate(parent)
+            parent = self.right_rotate(parent)
         # left is heavier
         elif balance < -1:
-            if cls._get_balance(parent.right_child) > 0:
-                cls.right_rotate(parent)
-            parent = cls.left_rotate(parent)
+            if self._get_balance(parent.right_child) > 0:
+                self.right_rotate(parent)
+            parent = self.left_rotate(parent)
 
         if parent_is_root:
-            cls._root = parent
+            self._root = parent
 
-    @classmethod
-    def left_rotate(cls, node):
+    def left_rotate(self, node):
         a = node
         b = node.left_child
         temp = b.right_child
@@ -89,8 +88,7 @@ class AVLHandler(StructureHandler):
         a.left_child = temp
         return node
 
-    @classmethod
-    def right_rotate(cls, node):
+    def right_rotate(self, node):
         a = node
         b = node.right_child
         temp = b.left_child
@@ -99,20 +97,18 @@ class AVLHandler(StructureHandler):
         a.right_child = temp
         return node
 
-    @classmethod
-    def _get_balance(cls, node):
+    def _get_balance(self, node):
         if not node:
             return 0
         else:
-            return cls.get_height(node=node.right_child, start=False) -\
-                   cls.get_height(node=node.left_child, start=False)
+            return self.get_height(node=node.right_child, start=False) - \
+                   self.get_height(node=node.left_child, start=False)
 
     @classmethod
     def remove_element(cls, value):
         pass
 
-    @classmethod
-    def show_in_order(cls, node=None, start=True):
+    def show_in_order(self, node=None, start=True):
         """
         Shows bst in the inorder manner.
         :param start: as the algorithm is recursive an I didn't want to use separate method for
@@ -120,13 +116,16 @@ class AVLHandler(StructureHandler):
         :param node: currently referred node
         """
         if start:
-            node = cls._root
+            node = self._root
 
         if not node:
             return
-        cls.show_in_order(node.left_child, False)
+        self.show_in_order(node.left_child, False)
         print(node.value)
-        cls.show_in_order(node.right_child, False)
+        self.show_in_order(node.right_child, False)
+
+    def __str__(self):
+        return 'avl'
 
 
 class Node:

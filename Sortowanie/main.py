@@ -2,15 +2,15 @@
 import os
 import sys
 
-from sort.heapsort import HeapSort
-from sort.insertion import InsertionSort
-from sort.iterativeQuicksort import IterativeQuickSort
-from sort.mergesort import MergeSort
-from sort.recursiveQuicksort import RecursiveQuickSort
-from sort.selection import SelectionSort
-from utils.measure import time_elapsed
-from utils.generator import generate_data
-from common import *
+from Sortowanie.sort.heapsort import HeapSort
+from Sortowanie.sort.insertion import InsertionSort
+from Sortowanie.sort.iterativeQuicksort import IterativeQuickSort
+from Sortowanie.sort.mergesort import MergeSort
+from Sortowanie.sort.recursiveQuicksort import RecursiveQuickSort
+from Sortowanie.sort.selection import SelectionSort
+from Sortowanie.utils.measure import time_elapsed
+from Sortowanie.utils.generator import generate_data
+from Sortowanie.common import *
 
 
 def run():

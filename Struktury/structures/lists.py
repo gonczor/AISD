@@ -1,23 +1,22 @@
-from errors import NotFoundError
-from structures import StructureHandler
+from Struktury.errors import NotFoundError
+from Struktury.structures import StructureHandler
 
 
 class ListHandler(StructureHandler):
     _my_list_head = None
     _my_list_current = None
 
-    @classmethod
-    def add_element(cls, value):
-        if not cls._my_list_head:
-            cls._my_list_head = Node(value)
+    def add_element(self, value):
+        if not self._my_list_head:
+            self._my_list_head = Node(value)
         else:
             # Special case: current element is smaller than head
-            if value < cls._my_list_head.value:
+            if value < self._my_list_head.value:
                 new_head = Node(value)
-                new_head.next = cls._my_list_head
-                cls._my_list_head = new_head
+                new_head.next = self._my_list_head
+                self._my_list_head = new_head
             else:
-                current_node = cls._my_list_head
+                current_node = self._my_list_head
                 # Find place to insert. Break conditions:
                 #   1. We are in the last node (next node doesn't exist)
                 #   2. Next node exists and is greater than current value
@@ -28,16 +27,14 @@ class ListHandler(StructureHandler):
                 current_node.next = Node(value)
                 current_node.next.next = tmp
 
-    @classmethod
-    def show(cls):
-        tmp = cls._my_list_head
+    def show(self):
+        tmp = self._my_list_head
         while tmp:
             print(tmp.value)
             tmp = tmp.next
 
-    @classmethod
-    def remove_element(cls, value):
-        tmp = cls._my_list_head
+    def remove_element(self, value):
+        tmp = self._my_list_head
         previous = None
 
         while tmp and tmp.value != value:
@@ -45,8 +42,8 @@ class ListHandler(StructureHandler):
             tmp = tmp.next
 
         if tmp:
-            if tmp == cls._my_list_head:
-                cls._my_list_head = cls._my_list_head.next
+            if tmp == self._my_list_head:
+                self._my_list_head = self._my_list_head.next
                 del tmp
             else:
                 previous.next = tmp.next
@@ -55,9 +52,8 @@ class ListHandler(StructureHandler):
         else:
             raise NotFoundError
 
-    @classmethod
-    def find_by_value(cls, value):
-        tmp = cls._my_list_head
+    def find_by_value(self, value):
+        tmp = self._my_list_head
 
         while tmp and tmp.value != value:
             tmp = tmp.next
@@ -67,14 +63,16 @@ class ListHandler(StructureHandler):
         else:
             raise NotFoundError
 
-    @classmethod
-    def clear(cls):
-        deleted = cls._my_list_head
-        cls._my_list_head = None
+    def clear(self):
+        deleted = self._my_list_head
+        self._my_list_head = None
         while deleted:
             tmp = deleted.next
             del deleted
             deleted = tmp
+
+    def __str__(self):
+        return 'list'
 
 
 class Node:
