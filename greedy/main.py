@@ -53,7 +53,26 @@ class Load:
 
 
 class Dynamic:
-    pass
+    _max_size = 0
+    _containers = []
+    _matrix = []
+
+    @classmethod
+    def choose(cls, max_size, containers):
+        cls._matrix = [[0 for _ in range(max_size+1)] for _ in range(len(containers)+1)]
+
+        for container_index in range(1, len(containers)+1):
+            for weight_index in range(containers[container_index].weight, max_size+1):
+                current_matrix_value = cls._matrix[container_index][weight_index]
+                previous_matrix_value
+                if (cls._matrix[container_index-1][weight_index-containers[container_index].weight] <
+                     containers[container_index].price):
+                    cls._matrix[container_index][weight_index] = containers[container_index].price
+                else:
+                    cls._matrix[container_index][weight_index] = \
+                        cls._matrix[container_index-1][weight_index-containers[container_index].weight]
+
+        pass
 
 
 class Greedy:
@@ -90,5 +109,6 @@ containers = [
 
 
 if __name__ == '__main__':
-    for element in Greedy.choose(10, containers):
-        print(element)
+    # for element in Greedy.choose(10, containers):
+    #     print(element)
+    Dynamic.choose(10, containers)
