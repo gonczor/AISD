@@ -1,30 +1,24 @@
-from Struktury.structures import StructureHandler
+from structures import StructureHandler
 
 
 class BSTHandler(StructureHandler):
     _root = None
 
     def find_by_value(self, value, node=None, start=True):
-        """
-        Search in order
-        """
+
         if start:
             node = self._root
 
         if not node:
             return None
 
-        if node.value == value:
-            return node
+        while node and node.value != value:
+            if value > node.value:
+                node = node.right_child
+            else:
+                node = node.left_child
 
-        found_node = self.find_by_value(value=value, start=False, node=node.left_child)
-        if found_node:
-            return found_node
-        found_node = self.find_by_value(value=value, start=False, node=node.right_child)
-        if found_node:
-            return found_node
-        else:
-            return None
+        return node
 
     def clear(self, start=True, node=None):
         if start:
@@ -102,7 +96,35 @@ class BSTHandler(StructureHandler):
         else:
             return right_subtree_height + 1
 
+    def get_most_left(self, start=True, node=None):
+        if start:
+            node = self._root
+
+        if not node or not node.value:
+            return 0
+
+        while node.left_child is not None:
+            node = node.left_child
+
+        return node.value
+
+    def print_post_order(self, start=True, node=None):
+        if start:
+            node = self._root
+
+        if not node or not node.value:
+            return
+
+        self.print_post_order(start=False, node=node.left_child)
+        self.print_post_order(start=False, node=node.right_child)
+        print(node.value)
+
+
     def __str__(self):
+        return 'bst'
+
+    @classmethod
+    def to_string(cls):
         return 'bst'
 
 

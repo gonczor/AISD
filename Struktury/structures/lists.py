@@ -1,10 +1,9 @@
-from Struktury.errors import NotFoundError
-from Struktury.structures import StructureHandler
+from errors import NotFoundError
+from structures import StructureHandler
 
 
 class ListHandler(StructureHandler):
     _my_list_head = None
-    _my_list_current = None
 
     def add_element(self, value):
         if not self._my_list_head:
@@ -72,6 +71,10 @@ class ListHandler(StructureHandler):
             deleted = tmp
 
     def __str__(self):
+        return 'list'
+
+    @classmethod
+    def to_string(cls):
         return 'list'
 
 

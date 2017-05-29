@@ -1,7 +1,11 @@
 from utils import timer
 
 
-# @timer
+@timer
+def find_path_start(graph):
+    find_path(graph)
+
+
 def find_path(graph, vertex=0, start=True):
     if not graph:
         return []

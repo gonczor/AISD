@@ -2,26 +2,32 @@
 import os
 import sys
 
-from Struktury.structures.lists import ListHandler
-from Struktury.structures.bst import BSTHandler
-from Struktury.structures.avl import AVLHandler
-from Struktury.timer import measure, time_elapsed
-from Struktury.utils.generator import generate_data
-from Struktury.utils import DATA_DIRECTORY_NAME, MEASUREMENT_DIRECTORY_NAME, SIZES
+from structures.lists import ListHandler
+from structures.bst import BSTHandler
+from structures.avl import AVLHandler
+from timer import measure, time_elapsed
+from utils.generator import generate_data
+from utils import DATA_DIRECTORY_NAME, MEASUREMENT_DIRECTORY_NAME, SIZES
 
 
 def run():
-    build_times = []
-    go_through_times = []
-    delete_times = []
 
+    task12()
+    # task3()
+
+
+def task12():
     handlers = [ListHandler, BSTHandler]
 
     for test_data_size in SIZES:
         for handler in handlers:
+            build_times = []
+            go_through_times = []
+            delete_times = []
+
             measurement_path = os.path.join(MEASUREMENT_DIRECTORY_NAME)
             # Tasks 1 and 2
-            task_1_and_2_directory = os.path.join(measurement_path, 'task12', str(handler))
+            task_1_and_2_directory = os.path.join(measurement_path, 'task12', handler.to_string())
             if not os.path.exists(task_1_and_2_directory):
                 os.makedirs(task_1_and_2_directory)
 
@@ -60,7 +66,7 @@ def run():
             for t in build_times:
                 avg += t
             f = open(build_measurement_file, 'a')
-            f.write('{}\n'.format(avg/15))
+            f.write('{}\n'.format(avg / 15))
             f.close()
 
             avg = 0.0
@@ -77,7 +83,8 @@ def run():
             f.write('{}\n'.format(avg / 15))
             f.close()
 
-    # Task 3
+
+def task3():
     handlers = [BSTHandler, AVLHandler]
 
     for test_data_size in SIZES:
@@ -85,8 +92,8 @@ def run():
             measurement_path = os.path.join(MEASUREMENT_DIRECTORY_NAME)
             # Tasks 1 and 2
             task_3_directory = os.path.join(measurement_path, 'task3')
-            if not os.path.exists(task_1_and_2_directory):
-                os.makedirs(task_1_and_2_directory)
+            if not os.path.exists(task_3_directory):
+                os.makedirs(task_3_directory)
 
             # get data from file
             path_to_data = os.path.join(DATA_DIRECTORY_NAME, str(test_data_size))
@@ -99,13 +106,16 @@ def run():
             structure = handler()
 
             for number in numbers:
-                structure.add_item(number)
+                structure.add_element(number)
 
-            measurement_file = os.path.join(task_3_directory, str(handler))
+            # if isinstance(structure, AVLHandler):
+            #     print('Size: {}'.format(test_data_size))
+            #     structure.show_in_order()
+
+            measurement_file = os.path.join(task_3_directory, handler.to_string())
             f = open(measurement_file, 'a')
-            f.write('{},{}'.format(test_data_size, structure.get_height()))
+            f.write('{},{}\n'.format(test_data_size, structure.get_height()))
             f.close()
-
 
 @measure
 def build(structure, data):
@@ -124,8 +134,24 @@ def go_through_elements(structure, data):
         structure.find_by_value(number)
 
 
+def zadanie():
+    elements = [15, 6, 18, 3, 7, 17, 4, 2, 20, 13, 19, 14]
+    handler = BSTHandler()
+    for element in elements:
+        handler.add_element(element)
+
+    print(handler.get_height())
+    print('###')
+    print(handler.get_most_left())
+    print('###')
+    handler.print_post_order()
+
+
+
 if __name__ == '__main__':
-    if '--generate' in sys.argv or '-g' in sys.argv:
-        generate_data()
-    else:
-        run()
+    # if '--generate' in sys.argv or '-g' in sys.argv:
+    #     generate_data()
+    # else:
+    #     run()
+        # debug_avl()
+    zadanie()
